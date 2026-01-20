@@ -1,0 +1,198 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Allison&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap');
+:root {
+  --cream-bg: #F2F2E6;
+  --sage-green: #557551;
+  --dark-green: #2E403D;
+  --text-main: #000000;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  min-height: 90vh; /* Takes up most of the viewport height */
+  width: 100%;
+  padding-top: 80px;
+}
+
+.hero-image-side {
+  width: 100%;
+  height: 100%;
+  background-color: #ddd; /* Placeholder color if image fails */
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image fills the area without stretching */
+  display: block;
+}
+
+.hero-content-side {
+  background-color: var(--cream-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+}
+
+.text-wrapper {
+  max-width: 500px;
+  text-align: center;
+}
+
+.hero-subtitle {
+  text-transform: uppercase;
+  font-family: "Inclusive Sans", "sans-serif";
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: -5px;
+  margin-right: 70px;
+}
+
+.text-starts {
+  font-family: "Inknut Antiqua", "serif";
+  font-size: 5rem;
+  color: var(--sage-green);
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  line-height: 1;
+  margin-right: 140px;
+  margin-bottom: -20px;
+}
+
+.brand-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0 2rem 0;
+}
+
+/* New class to handle the side-by-side layout */
+.with-polomolok-row {
+  display: flex;
+  align-items: start; /* Aligns the bottom of the text */
+  gap: 1px;              /* Space between 'with' and 'Polomolok's' */
+  margin-left: -40px;    /* Offsets the row to the left for the staggered look */
+}
+
+.text-with {
+  font-family: "Instrument Serif", serif; /* Fixed spelling */
+  font-size: 25px;
+  font-style: italic;
+  color: var(--sage-green);
+}
+
+.text-polomolok {
+  font-family: "Instrument Serif", serif; /* Fixed spelling */
+  font-size: 5rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -2px; /* Adjusted from -8px for better readability */
+  color: var(--text-main);
+  margin: 0;
+  line-height: 0.9;
+}
+
+.text-finest {
+  font-family: "Instrument Serif", serif; /* Changed to match the luxury style */
+  font-style: italic;
+  font-size: 1.6rem;
+  align-self: flex-end; /* Pushes 'Finest Nails' to the right */
+  margin-right: 12%;
+  margin-top: -10px;    /* Pulls it up closer to 'Polomolok's' */
+  color: var(--dark-green);
+}
+
+.hero-quote {
+  font-size: 1.25rem;
+  font-family: "Inclusive Sans", "serif";
+  color: var(--dark-green);
+  letter-spacing: 2px;
+  margin-bottom: 2.5rem;
+  line-height: 1.4;
+}
+
+.btn-services {
+  background-color: var(--sage-green);
+  color: white;
+  border: none;
+  padding: 0.9rem 3.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-services:hover {
+  background-color: var(--dark-green);
+}
+
+@media (max-width: 768px) {
+  /* 1. Stack the layout vertically */
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* 2. Put text on top, image on bottom */
+  .hero-content-side {
+    order: 1; 
+    padding: 3rem 1.5rem; /* Reduce padding for smaller screens */
+    width: 100%;
+  }
+
+  .hero-image-side {
+    order: 2;
+    height: 50vh; /* Show a good portion of the nail art */
+  }
+
+  /* 3. Scale down the typography so it fits */
+  .text-starts {
+    font-size: 4rem; /* Smaller than desktop */
+    margin-right: 0; /* Center it */
+    margin-bottom: -15px;
+    text-align: center;
+  }
+
+  .with-polomolok-row {
+    margin-left: 0; /* Center the group */
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .text-polomolok {
+    font-size: 3.8rem; /* Scaled down */
+    letter-spacing: -1px;
+  }
+
+  .text-with {
+    font-size: 1.4rem;
+    margin-top: 10px; /* Nudge it to sit correctly next to the tall P */
+  }
+
+  .text-finest {
+    font-size: 1.4rem;
+    margin-right: 0;
+    text-align: center;
+    align-self: center; /* Center it below Polomolok's */
+    margin-top: 0;
+  }
+
+  .hero-quote {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    padding: 0 10px;
+  }
+
+  .btn-services {
+    padding: 0.8rem 3rem;
+    width: auto;
+  }
+}

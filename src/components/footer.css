@@ -1,0 +1,214 @@
+/* Import fonts at the top of your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&family=Italianno&family=Inclusive+Sans&display=swap');
+
+.footer-wrapper {
+  width: 100%;
+  font-family: 'Inclusive Sans', sans-serif;
+}
+
+/* --- CTA BANNER --- */
+.footer-cta {
+  background-color: #2E403D; /* Your dark green */
+  padding: 4rem 10%;
+  color: #F2F2E6; /* Cream text */
+}
+
+.cta-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cta-main-title {
+  font-family: 'Inknut Antiqua', serif;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin: 0;
+  color: #83B37C;
+}
+
+.script-text {
+  font-family: 'Italianno', cursive;
+  font-size: 4.5rem;
+  font-weight: 400;
+  display: block;
+  margin-top: -10px;
+  color: white;
+  margin-left: 30px;
+  margin-bottom: -25px;
+}
+
+.cta-tagline {
+  font-family: 'Instrument Serif', 'serif';
+  color: #798C71; /* Lighter sage green */
+  font-size: 1.4rem;
+  margin-top: 5px;
+  margin-left: 130px;
+}
+
+.cta-right {
+  max-width: 380px;
+  text-align: right;
+}
+
+.cta-right p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+.cta-button {
+  background-color: #F2F2E6;
+  color: #2E403D;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+/* --- MAIN FOOTER (CREAM) --- */
+.footer-main {
+  background-color: #F2F2E6;
+  padding: 5rem 10%;
+  color: #2E403D;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1.5fr 1fr;
+  gap: 40px;
+}
+
+.footer-brand-name {
+  font-family: 'Afacad', 'serif';
+  font-size: 40px;
+  letter-spacing: 1px;
+  margin: 0;
+  margin-bottom: -15px;
+}
+
+.footer-brand-sub {
+  font-family: 'Allison', 'cursive';
+  font-size: 1.6rem;
+  margin: -5px 0 20px 0;
+}
+
+.about-btn {
+  background-color: #2E403D;
+  color: #F2F2E6;
+  border: none;
+  padding: 10px 35px;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #2E403D;
+  font-size: 1.1rem;
+  transition: opacity 0.2s;
+}
+
+.contact-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
+
+.contact-text {
+  font-size: 1rem;
+  line-height: 1.4;
+  max-width: 250px;
+  text-align: left;
+}
+
+.social-links h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.icon-group {
+  display: flex;
+  gap: 20px;
+  font-size: 2rem;
+}
+
+.icon-group a {
+  color: #2E403D;
+}
+
+/* --- COPYRIGHT BAR --- */
+.footer-bottom {
+  background-color: #2E403D;
+  color: #F2F2E6;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  align-items: center;
+}
+.contact-icon {
+  color: #2E403D; /* Change this to your preferred hex code */
+  font-size: 1.1rem; /* Adjust size to match text */
+  display: flex;
+  align-items: center;
+  margin-top: 4px; /* Optional: Aligns icon with the first line of text */
+}
+
+/* If you want the icons to have a different color than the text */
+.contact-row:hover .contact-icon {
+  color: #557551; /* Subtle color change on hover */
+  transition: color 0.3s ease;
+}
+
+.follow-title {
+    margin-right: 55px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .cta-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+  .cta-right {
+    text-align: center;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-row {
+    justify-content: center;
+  }
+  .follow-title {
+    margin-right: 0px;
+}
+}

@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  /* REMOVE height: 100% - This was blocking the scroll event */
+  min-height: 100vh; 
+  overflow-x: hidden;
+  background-color: #2E403D;
+  /* Ensure no default margin/padding is interfering */
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  /* Ensure the root can grow */
+  min-height: 100vh;
+  --cream-bg: #F2F2E6;
+  --sage-green: #557551;
+  --dark-green: #2E403D;
+  --text-main: #000000;
+}

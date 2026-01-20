@@ -1,0 +1,22 @@
+/* Remove the "frame" around your app */
+#root {
+  width: 100%;
+  max-width: 100% !important; /* Overrides the 1280px */
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+}
+
+.App {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
