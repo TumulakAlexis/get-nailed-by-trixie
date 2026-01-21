@@ -1,0 +1,265 @@
+.schedule-page {
+    background-color: #F2F2E6;
+    /* Cream background from UI */
+    min-height: 100vh;
+    padding: 80px 10%;
+    color: #2E403D;
+    display: flex;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.schedule-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 50px;
+}
+
+/* LEFT SIDE */
+.info-side {
+    flex: 1;
+}
+
+.main-title {
+    font-family: 'Inknut Antiqua', serif;
+    font-size: 5rem;
+    line-height: 0.9;
+    margin-bottom: 40px;
+}
+
+.script-font {
+    font-family: 'Italianno', cursive;
+    font-size: 6.5rem;
+    font-weight: 400;
+    margin-bottom: -80px;
+}
+
+.sub-title {
+    font-size: 1.8rem;
+    color: #798C71;
+    /* Sage color */
+    font-family: 'Inclusive Sans', sans-serif;
+    margin: 0;
+    margin-top: -100px;
+}
+
+.instructions {
+    font-family: 'Inclusive Sans', sans-serif;
+    line-height: 1.6;
+    max-width: 450px;
+}
+
+.instructions ol {
+    padding-left: 20px;
+    margin: 20px 0;
+}
+
+.pro-tips {
+    margin-top: 30px;
+    font-size: 0.95rem;
+}
+
+.pro-tips ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+/* CALENDAR CARD */
+.calendar-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pick-label {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: #798C71;
+}
+
+.calendar-card {
+    background: #FFFFFF;
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.calendar-header h3 {
+    font-family: 'Inknut Antiqua', serif;
+    font-size: 1.2rem;
+}
+
+.nav-btns button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 10px;
+    color: #2E403D;
+}
+
+.days-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+}
+
+.column.label {
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #2E403D;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.cell {
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+    border: 0.5px solid #f0f0f0;
+}
+
+.cell:hover:not(.disabled) {
+    background-color: #f9f9f9;
+}
+
+.cell.disabled {
+    color: #ccc;
+    background-color: #fcfcfc;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 4px;
+}
+
+.status-green {
+    background-color: #798C71;
+}
+
+.status-red {
+    background-color: #E67E7E;
+}
+
+.status-grey {
+    background-color: #A9A9A9;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.slot-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.slot-item {
+    padding: 12px;
+    border: 1px solid #798C71;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    color: #798C71;
+}
+
+.slot-item.active {
+    background: #798C71;
+    color: white;
+}
+
+.slot-item:disabled {
+    background: #eee;
+    border-color: #ccc;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.confirm-booking-btn {
+    background: #798C71;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    .schedule-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .info-side,
+    .calendar-side {
+        width: 100%;
+    }
+
+    .instructions {
+        margin: 0 auto;
+    }
+
+    .main-title {
+        font-size: 3.5rem;
+    }
+
+    .script-font {
+        font-size: 4.5rem;
+    }
+}

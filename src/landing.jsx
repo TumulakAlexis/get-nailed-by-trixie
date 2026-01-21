@@ -7,7 +7,7 @@ import Footer from './components/footer.jsx';
 
 const Landing = () => {
   return (
-    <div style={{ width: '100vw' }}>
+    <div style={{ }}>
       <Header />
       <main>
         <Section1 />

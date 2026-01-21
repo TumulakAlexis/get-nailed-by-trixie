@@ -4,6 +4,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import Landing from './landing';
 import About1 from './about-page/about1';
+import Schedule from './schedule-page/schedule';
 
 // A "Landing" component to group your home sections
 const LandingPage = () => (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/about" element={<About1 />} />
             
             {/* You can add more routes here, like /services or /booking */}
+            <Route path="/book" element={<Schedule />} />
           </Routes>
         </main>
 
