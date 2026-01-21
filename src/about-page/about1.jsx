@@ -12,10 +12,6 @@ const About1 = () => {
       <div className="about-content">
         <div className="about-branding">
           <img src={BrandLogo} alt="Get Nailed Branding" className="about-main-logo" />
-          <div className="about-brand-title">
-            <h1>GET NAILED</h1>
-            <span>by Trixie</span>
-          </div>
         </div>
 
         <div className="about-description">

@@ -1,6 +1,8 @@
 import React from 'react';
 import './footer.css';
 import { FaFacebook, FaTiktok, FaInstagram, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link/dist/react-router-hash-link.cjs.production';
 
 const Footer = () => {
     return (
@@ -16,7 +18,13 @@ const Footer = () => {
                     </div>
                     <div className="cta-right">
                         <p>Unsure which service to book? Reach out to us—we're happy to help you choose and reserve your spot.</p>
-                        <button className="cta-button">Book an appointment</button>
+                        <Link
+                            to="/book"
+                            style={{ textDecoration: 'none' }}
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        >
+                            <button className="cta-button">Book an appointment</button>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -30,16 +38,35 @@ const Footer = () => {
                             <h2 className="footer-brand-name">GET NAILED</h2>
                             <p className="footer-brand-sub">by Trixie</p>
                         </div>
-                        <button className="about-btn">About us</button>
+                        <Link to="/about" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                            <button className="about-btn">About us</button>
+                        </Link>
                     </div>
 
                     {/* Column 2: Navigation */}
                     <div className="footer-column nav-col">
                         <ul className="footer-links">
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#schedule">Schedule</a></li>
+                            <li>
+                                <Link to="/" onClick={() => {
+                                    setIsMenuOpen(false);
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}>Home</Link>
+                            </li>
+                            <li>
+                                <HashLink smooth to="/#services">Services</HashLink>
+                            </li>
+                            <li>
+                                <Link to="/about" onClick={() => {
+                                    setIsMenuOpen(false);
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}>About</Link>
+                            </li>
+                            <li>
+                                <Link to="/book" onClick={() => {
+                                    setIsMenuOpen(false);
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}>Book Now!</Link>
+                            </li>
                         </ul>
                     </div>
 

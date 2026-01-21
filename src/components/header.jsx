@@ -67,13 +67,10 @@ const Header = () => {
                 }}>About</Link>
 
                 {/* Link to your Booking page */}
-                <Link
-                    to="/book"
-                    className="book-now-link"
-                    onClick={() => setIsMenuOpen(false)}
-                >
-                    Book Now
-                </Link>
+                <Link to="/book" onClick={() => {
+                    setIsMenuOpen(false)
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}>Book Now!</Link>
             </nav>
         </header>
     );

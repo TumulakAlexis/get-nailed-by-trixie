@@ -186,6 +186,31 @@
     margin-right: 55px;
 }
 
+.footer-links {
+    list-style: none;         /* Removes bullet points */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;   /* This makes the list vertical */
+    gap: 12px;                /* Adds nice spacing between links */
+    align-items: flex-start;  /* Keeps everything aligned to the left */
+}
+
+.footer-links li {
+    display: block;           /* Ensures each item takes its own line */
+}
+
+.footer-links a, 
+.footer-links Link {          /* Targets both standard and React links */
+    text-decoration: none;
+    color: inherit;           /* Or your preferred color */
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 0.7;             /* Quick hover effect */
+}
+
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
   .cta-content {
