@@ -151,7 +151,7 @@ const BookingModal = ({ selectedDate, onClose }) => {
                                 </div>
                                 <div className="image-upload-wrapper">
                                     <div className={`upload-box ${selectedImage ? 'has-file' : ''}`} onClick={() => imageInput.current.click()}>
-                                        <span className="upload-icon">{selectedImage ? '✅' : '📷'}</span>
+                                        <span className="upload-icon">{selectedImage ? '✅' : ''}</span>
                                         <p>{selectedImage ? selectedImage.name : "Upload Nail Art Reference"}</p>
                                     </div>
                                     <input type="file" ref={imageInput} hidden accept="image/*" 

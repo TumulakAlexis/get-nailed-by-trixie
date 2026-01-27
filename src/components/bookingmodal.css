@@ -135,6 +135,16 @@
 
 .image-upload-section {
   margin: 10px 0;
+  cursor: pointer;
+}
+
+.image-upload-wrapper {
+  cursor: pointer;
+}
+
+.image-upload-wrapper:hover {
+  cursor: pointer;
+  color: #6CBB60;
 }
 
 .upload-label {
