@@ -1,5 +1,6 @@
 import React from 'react';
 import './section3.css';
+import { motion } from 'framer-motion';
 
 const Section3 = () => {
   const services = [
@@ -23,13 +24,57 @@ const Section3 = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.6, ease: "easeOut" } 
+    }
+  };
+
   return (
     <section className="section3-container" id="services">
-      <h2 className="services-title">Services</h2>
+      <motion.h2 
+        className="services-title"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.5 }}
+        transition={{ duration: 0.6 }}
+      >
+        Services
+      </motion.h2>
       
-      <div className="services-list">
+      <motion.div 
+        className="services-list"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+      >
         {services.map((service, index) => (
-          <div className="service-card" key={index}>
+          <motion.div 
+            className="service-card" 
+            key={index}
+            variants={cardVariants}
+            // Added Hover and Tap interactions
+            whileHover={{ 
+              y: -10, 
+              scale: 1.02,
+              transition: { duration: 0.3 } 
+            }}
+            whileTap={{ scale: 0.98 }}
+          >
             <div className="service-image">
               <img src={service.img} alt={service.title} />
             </div>
@@ -38,9 +83,9 @@ const Section3 = () => {
               <p className="service-desc">{service.description}</p>
               <p className="service-price">Prices starts at php {service.price}</p>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

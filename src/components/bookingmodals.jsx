@@ -6,7 +6,6 @@ import emailjs from '@emailjs/browser';
 import './bookingmodal.css';
 
 const BookingModal = ({ selectedDate, onClose }) => {
-    // Pulling keys from environment variables (.env.local)
     const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
     const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -28,7 +27,6 @@ const BookingModal = ({ selectedDate, onClose }) => {
     const generateUploadUrl = useMutation(api.bookings.generateUploadUrl);
     const createBooking = useMutation(api.bookings.createBooking);
 
-    // Initialize EmailJS when the component loads
     useEffect(() => {
         if (EMAILJS_PUBLIC_KEY) {
             emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -37,20 +35,23 @@ const BookingModal = ({ selectedDate, onClose }) => {
 
     const handleBooking = async (e) => {
         e.preventDefault();
-        if (!selectedImage) return alert("Please provide a nail art reference picture.");
-
         setIsUploading(true);
-        try {
-            // STEP 1: Upload Image to Convex Storage
-            const postUrl = await generateUploadUrl();
-            const result = await fetch(postUrl, {
-                method: "POST",
-                headers: { "Content-Type": selectedImage.type },
-                body: selectedImage,
-            });
-            const { storageId } = await result.json();
 
-            // STEP 2: Create Database Entry
+        try {
+            let storageId = null;
+
+            // Optional Image Upload Logic
+            if (selectedImage) {
+                const postUrl = await generateUploadUrl();
+                const result = await fetch(postUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": selectedImage.type },
+                    body: selectedImage,
+                });
+                const response = await result.json();
+                storageId = response.storageId;
+            }
+
             await createBooking({
                 name: formData.name,
                 facebookName: formData.facebook,
@@ -58,18 +59,17 @@ const BookingModal = ({ selectedDate, onClose }) => {
                 phone: formData.phone,
                 date: dateKey,
                 slot: selectedSlot,
-                imageStorageId: storageId,
+                imageStorageId: storageId, // Will be null if no image selected
             });
 
-            // STEP 3: Send Email (BCC to you must be set in EmailJS Dashboard)
             const templateParams = {
-                user_name: formData.name,      // Tags for your EmailJS Template
-                user_email: formData.email,    // Tags for your EmailJS Template
-                user_phone: formData.phone,    // Tags for your EmailJS Template
+                user_name: formData.name,
+                user_email: formData.email,
+                user_phone: formData.phone,
                 user_facebook: formData.facebook,
                 booking_date: format(selectedDate, 'MMMM d, yyyy'),
                 booking_slot: selectedSlot,
-                to_email: formData.email,      // Used in EmailJS "To Email" field
+                to_email: formData.email,
             };
 
             await emailjs.send(
@@ -81,7 +81,7 @@ const BookingModal = ({ selectedDate, onClose }) => {
             setIsSuccess(true); 
         } catch (err) {
             console.error("Booking Error:", err);
-            alert("Something went wrong. Your booking might not have been saved.");
+            alert("Something went wrong. Please check your connection.");
         } finally {
             setIsUploading(false);
         }
@@ -98,9 +98,7 @@ const BookingModal = ({ selectedDate, onClose }) => {
                     <div className="success-view">
                         <div className="success-icon">✨</div>
                         <h2 className="success-title">Booking Confirmed!</h2>
-                        <p className="success-quote">
-                            "Life is not perfect, but your nails can be."
-                        </p>
+                        <p className="success-quote">"Life is not perfect, but your nails can be."</p>
                         <p className="success-subtext">
                             A confirmation has been sent to <strong>{formData.email}</strong>. <br /> 
                             See you on <strong>{format(selectedDate, 'MMMM d')}</strong> at <strong>{selectedSlot}</strong>!
@@ -151,8 +149,8 @@ const BookingModal = ({ selectedDate, onClose }) => {
                                 </div>
                                 <div className="image-upload-wrapper">
                                     <div className={`upload-box ${selectedImage ? 'has-file' : ''}`} onClick={() => imageInput.current.click()}>
-                                        <span className="upload-icon">{selectedImage ? '✅' : ''}</span>
-                                        <p>{selectedImage ? selectedImage.name : "Upload Nail Art Reference"}</p>
+                                        <span className="upload-icon">{selectedImage ? '✅' : '📷'}</span>
+                                        <p>{selectedImage ? selectedImage.name : "Add Reference (Optional)"}</p>
                                     </div>
                                     <input type="file" ref={imageInput} hidden accept="image/*" 
                                         onChange={(e) => setSelectedImage(e.target.files[0])} />

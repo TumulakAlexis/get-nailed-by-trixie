@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './section2.css';
 import Logo from '../assets/getnailedlogo.png';
+import { motion } from 'framer-motion';
 
 const Section2 = () => {
   const scrollRef = useRef(null);
@@ -17,33 +18,55 @@ const Section2 = () => {
       if (scrollRef.current) {
         const { scrollLeft, offsetWidth, scrollWidth } = scrollRef.current;
         
-        // If we are at the end, jump back to start, otherwise scroll right by one item width
         if (scrollLeft + offsetWidth >= scrollWidth - 10) {
           scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
           scrollRef.current.scrollBy({ left: offsetWidth / 3, behavior: 'smooth' });
         }
       }
-    }, 3000); // Scrolls every 3 seconds
+    }, 3000);
 
     return () => clearInterval(autoScroll);
   }, []);
 
+  // Animation Variants
+  const fadeInRight = {
+    hidden: { opacity: 0, x: -40 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
+  const fadeInLeft = {
+    hidden: { opacity: 0, x: 40 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
   return (
     <section className="section2-container">
       <div className="section2-header">
-        <div className="s2-branding">
+        <motion.div 
+          className="s2-branding"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.5 }}
+          variants={fadeInRight}
+        >
           <img src={Logo} alt="Get Nailed Logo" className="s2-logo" />
-        </div>
+        </motion.div>
         
-        <div className="s2-description">
+        <motion.div 
+          className="s2-description"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.5 }}
+          variants={fadeInLeft}
+        >
           <p>
             Get Nailed by Trixie is a luxury nail studio dedicated to delivering 
             expertly crafted nail art and premium nail care. We specialize in 
             elegant, modern, and customized designs, combining high-quality 
             products with meticulous attention to detail.
           </p>
-        </div>
+        </motion.div>
       </div>
 
       <div className="carousel-wrapper">
