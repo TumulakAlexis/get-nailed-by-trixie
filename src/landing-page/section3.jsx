@@ -77,8 +77,9 @@ const Section3 = () => {
             </motion.div>
           ))
         ) : (
-          // 4. Loading state
-          <div style={{ textAlign: 'center', padding: '2rem' }}>
+          /* 4. UPDATED: Loading Circle State */
+          <div className="loading-container">
+            <div className="loading-circle"></div>
             <p>Loading our premium services...</p>
           </div>
         )}
