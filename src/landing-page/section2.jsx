@@ -2,16 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import './section2.css';
 import Logo from '../assets/getnailedlogo.png';
 import { motion } from 'framer-motion';
+import Car1 from '../assets/landing/car1.jpg';
+import Car2 from '../assets/landing/car2.jpg';
+import Car3 from '../assets/landing/car3.jpg';
+import Car4 from '../assets/landing/car4.jpg';
+import Car5 from '../assets/landing/car5.jpg';
 
 const Section2 = () => {
   const scrollRef = useRef(null);
-  const images = [
-    "https://images.unsplash.com/photo-1604654894610-df490982580e?q=80&w=1000",
-    "https://images.unsplash.com/photo-1632345031435-8727f6897d53?q=80&w=1000",
-    "https://images.unsplash.com/photo-1607779097040-26e80aa78e66?q=80&w=1000",
-    "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=1000",
-    "https://images.unsplash.com/photo-1600057405106-a64939b4b008?q=80&w=1000"
-  ];
+  const images = [Car1, Car2, Car3, Car4, Car5];
 
   useEffect(() => {
     const autoScroll = setInterval(() => {

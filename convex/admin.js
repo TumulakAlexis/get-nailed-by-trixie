@@ -148,3 +148,43 @@ export const getAllTransactions = query({
       .collect();
   },
 });
+
+/** 
+ * --- NEW: EXPENSE FUNCTIONS ---
+ */
+export const addExpense = mutation({
+  args: {
+    description: v.string(),
+    amount: v.number(),
+    category: v.string(),
+    date: v.string(),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.insert("expenses", {
+      ...args,
+      createdAt: Date.now(),
+    });
+  },
+});
+
+export const getAllExpenses = query({
+  handler: async (ctx) => {
+    return await ctx.db.query("expenses").order("desc").collect();
+  },
+});
+
+// Add these to convex/admin.ts
+
+export const deleteExpense = mutation({
+  args: { id: v.id("expenses") },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
+  },
+});
+
+export const deleteTransaction = mutation({
+  args: { id: v.id("transactions") },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
+  },
+});

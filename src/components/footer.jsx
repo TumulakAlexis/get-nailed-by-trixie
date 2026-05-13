@@ -89,7 +89,13 @@ const Footer = () => {
                     <div className="footer-column social-links">
                         <h3 className='follow-title'>Follow us</h3>
                         <div className="icon-group">
-                            <a href="#" target="_blank"><FaFacebook /></a>
+                            <a
+                                href="https://www.facebook.com/profile.php?id=100085505925962"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <FaFacebook />
+                            </a>
                             <a href="#" target="_blank"><FaTiktok /></a>
                             <a href="#" target="_blank"><FaInstagram /></a>
                         </div>
