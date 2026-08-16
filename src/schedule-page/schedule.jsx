@@ -16,7 +16,7 @@ import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import './schedule.css';
 import BookingModal from '../components/bookingmodals';
-import { motion } from 'framer-motion'; // Added
+import { motion } from 'framer-motion';
 
 const Schedule = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -24,6 +24,28 @@ const Schedule = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const today = startOfToday();
+
+  // Define calendar navigation boundaries using strict startOfMonth timestamps
+  const minMonth = startOfMonth(today);
+  const maxMonth = startOfMonth(new Date(today.getFullYear(), 11, 1)); // December of the current year
+
+  const nextMonthCandidate = startOfMonth(addMonths(currentMonth, 1));
+  const prevMonthCandidate = startOfMonth(subMonths(currentMonth, 1));
+
+  const isPrevDisabled = isBefore(prevMonthCandidate, minMonth);
+  const isNextDisabled = nextMonthCandidate.getTime() > maxMonth.getTime();
+
+  const handlePrevMonth = () => {
+    if (!isBefore(prevMonthCandidate, minMonth)) {
+      setCurrentMonth(prevMonthCandidate);
+    }
+  };
+
+  const handleNextMonth = () => {
+    if (nextMonthCandidate.getTime() <= maxMonth.getTime()) {
+      setCurrentMonth(nextMonthCandidate);
+    }
+  };
 
   const bookingStats = useQuery(api.bookings.getMonthAvailability, { 
     month: format(currentMonth, 'yyyy-MM') 
@@ -62,8 +84,20 @@ const Schedule = () => {
     <div className="calendar-header">
       <h3>{format(currentMonth, 'MMMM yyyy')}</h3>
       <div className="nav-btns">
-        <button onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}>&lt;</button>
-        <button onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}>&gt;</button>
+        <button 
+          onClick={handlePrevMonth} 
+          disabled={isPrevDisabled} 
+          style={{ opacity: isPrevDisabled ? 0.4 : 1, cursor: isPrevDisabled ? 'not-allowed' : 'pointer' }}
+        >
+          &lt;
+        </button>
+        <button 
+          onClick={handleNextMonth} 
+          disabled={isNextDisabled} 
+          style={{ opacity: isNextDisabled ? 0.4 : 1, cursor: isNextDisabled ? 'not-allowed' : 'pointer' }}
+        >
+          &gt;
+        </button>
       </div>
     </div>
   );
