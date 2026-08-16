@@ -1,7 +1,10 @@
+/* ==========================================
+   BASE CONTAINER & TYPOGRAPHY
+   ========================================== */
 .about4-container {
   width: 100%;
-  background-color: #2E403D; /* Dark sage green background */
-  color: #F2F2E6; /* Cream text */
+  background-color: #2E403D;
+  color: #F2F2E6;
   padding: 6rem 2rem;
   box-sizing: border-box;
   border: none;
@@ -21,7 +24,7 @@
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: #a3c1a6; /* Soft sage accent */
+  color: #a3c1a6;
   margin-bottom: 0.5rem;
   font-weight: 600;
 }
@@ -34,7 +37,9 @@
   text-align: center;
 }
 
-/* Analytics & Graph Card */
+/* ==========================================
+   ANALYTICS & GRAPH CARD
+   ========================================== */
 .about4-analytics-card {
   display: flex;
   background: rgba(242, 242, 230, 0.04);
@@ -66,10 +71,8 @@
   margin-bottom: 8px;
 }
 
-.about4-big-stars {
+.about4-big-stars, .about4-card-stars, .about4-graph-label svg {
   color: #d4af37;
-  font-size: 0.9rem;
-  margin-bottom: 6px;
 }
 
 .about4-total-count {
@@ -120,11 +123,6 @@
   font-weight: 600;
 }
 
-.about4-graph-label svg {
-  color: #d4af37;
-  font-size: 0.75rem;
-}
-
 .about4-graph-bar-bg {
   flex: 1;
   height: 8px;
@@ -147,23 +145,34 @@
   color: rgba(242, 242, 230, 0.7);
 }
 
-/* Reviews Grid */
+/* ==========================================
+   REVIEWS GRID & UNIFORM CARD STYLING
+   ========================================== */
 .about4-reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
   width: 100%;
+  align-items: stretch;
 }
 
 .about4-review-card {
-  background: rgba(242, 242, 230, 0.04);
+  background: rgba(242, 242, 230, 0.04); /* Fixed color mismatch to match dark theme */
   border: 1px solid rgba(242, 242, 230, 0.12);
   border-radius: 20px;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  justify-content: space-between;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.about4-review-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(242, 242, 230, 0.35);
+  background: rgba(242, 242, 230, 0.07);
 }
 
 .about4-review-header {
@@ -174,49 +183,54 @@
 
 .about4-client-name {
   font-family: 'Inclusive Sans', sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #F2F2E6;
-  margin: 0;
+  margin: 0 0 2px 0;
 }
 
 .about4-review-date {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: rgba(242, 242, 230, 0.5);
 }
 
-.about4-card-stars {
-  color: #d4af37;
-  font-size: 0.75rem;
+.about4-comment-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
 }
 
 .about4-review-comment {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: rgba(242, 242, 230, 0.85);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: rgba(242, 242, 230, 0.9);
   font-style: italic;
   margin: 0;
+  word-break: break-word;
+}
+
+.about4-read-more-hint {
+  font-size: 0.75rem;
+  color: #a3c1a6;
+  font-weight: 600;
+  margin-top: 2px;
 }
 
 .about4-review-img-wrapper {
-  margin-top: 8px;
   border-radius: 12px;
   overflow: hidden;
-  max-height: 200px;
-  border: 1px solid rgba(242, 242, 230, 0.1);
+  height: 130px;
+  border: 1px solid rgba(242, 242, 230, 0.15);
+  margin-top: 10px;
 }
 
 .about4-review-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 20%; /* Shifts the crop focal point downward/upward to center the subject */
+  object-position: 50% 20%;
   display: block;
-  transition: transform 0.3s ease;
-}
-
-.about4-star {
-  margin-right: 2px;
 }
 
 .about4-no-reviews {
@@ -226,33 +240,37 @@
   font-style: italic;
 }
 
-.about4-comment-box {
+/* See More Reviews Button */
+.about4-show-more-container {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  justify-content: center;
+  margin-top: 3rem;
+  width: 100%;
 }
 
-.about4-see-more-btn {
-  background: none;
-  border: none;
-  color: #a3c1a6; /* Soft sage accent */
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-  padding: 0;
-  text-align: left;
-  width: fit-content;
-  transition: color 0.2s;
-}
-
-.about4-see-more-btn:hover {
+.about4-show-more-reviews-btn {
+  background: rgba(242, 242, 230, 0.08);
   color: #F2F2E6;
-  text-decoration: underline;
+  border: 1px solid rgba(242, 242, 230, 0.2);
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
 }
 
+.about4-show-more-reviews-btn:hover {
+  background: rgba(242, 242, 230, 0.15);
+  border-color: rgba(242, 242, 230, 0.4);
+  transform: translateY(-2px);
+}
 
 /* ==========================================
-   MODERN MODAL DESIGN OVERHAUL
+   MODAL DIALOGS
    ========================================== */
 .about4-modal-overlay {
   position: fixed;
@@ -262,18 +280,11 @@
   height: 100%;
   background: rgba(15, 22, 20, 0.75);
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 1rem;
-  animation: modalFadeIn 0.3s ease;
-}
-
-@keyframes modalFadeIn {
-  from { opacity: 0; transform: scale(0.96); }
-  to { opacity: 1; transform: scale(1); }
 }
 
 .about4-modal-content {
@@ -308,7 +319,6 @@
   color: #2E403D;
   margin: 0.2rem 0 0 0;
   font-size: 1.6rem;
-  line-height: 1.2;
 }
 
 .about4-close-icon-btn {
@@ -322,7 +332,6 @@
   justify-content: center;
   cursor: pointer;
   color: #2E403D;
-  font-size: 1rem;
   transition: background 0.2s, transform 0.2s;
 }
 
@@ -362,17 +371,8 @@
   font-size: 0.95rem;
   color: #2E403D;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.about4-form input[type="text"]:focus,
-.about4-form select:focus,
-.about4-form textarea:focus {
-  border-color: #2E403D;
-  box-shadow: 0 0 0 3px rgba(46, 64, 61, 0.12);
-}
-
-/* Modern Drag/Drop File Box Styling */
 .about4-file-upload-box {
   position: relative;
   border: 2px dashed rgba(46, 64, 61, 0.25);
@@ -385,23 +385,6 @@
   gap: 6px;
   text-align: center;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
-}
-
-.about4-file-upload-box:hover {
-  border-color: #2E403D;
-  background: rgba(46, 64, 61, 0.02);
-}
-
-.about4-upload-icon {
-  font-size: 1.4rem;
-  color: #526E69;
-}
-
-.about4-file-upload-box span {
-  font-size: 0.85rem;
-  color: #4a5568;
-  font-weight: 500;
 }
 
 .about4-file-upload-box input[type="file"] {
@@ -420,8 +403,7 @@
   margin-top: 0.5rem;
 }
 
-.about4-cancel-btn,
-.about4-submit-btn {
+.about4-cancel-btn, .about4-submit-btn {
   flex: 1;
   padding: 14px;
   border-radius: 14px;
@@ -429,7 +411,6 @@
   font-size: 0.95rem;
   cursor: pointer;
   border: none;
-  transition: transform 0.1s, background 0.2s;
 }
 
 .about4-cancel-btn {
@@ -437,289 +418,12 @@
   color: #2E403D;
 }
 
-.about4-cancel-btn:hover {
-  background: rgba(46, 64, 61, 0.15);
-}
-
 .about4-submit-btn {
   background: #2E403D;
   color: #F2F2E6;
-  box-shadow: 0 4px 12px rgba(46, 64, 61, 0.2);
 }
 
-.about4-submit-btn:hover:not(:disabled) {
-  background: #3b4d4d;
-  transform: translateY(-1px);
-}
-
-.about4-submit-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .about4-analytics-card {
-    flex-direction: column;
-    gap: 2rem;
-    padding: 1.5rem;
-  }
-  .about4-container {
-    padding: 4rem 1.5rem;
-  }
-  .about4-modal-content {
-    padding: 2rem 1.5rem;
-  }
-}
-/* Lightbox Fullscreen Preview Modal */
-.about4-lightbox-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 15, 14, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  padding: 2rem;
-  animation: fadeIn 0.2s ease;
-}
-
-.about4-lightbox-container {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.about4-lightbox-img {
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
-  border-radius: 16px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(242, 242, 230, 0.2);
-}
-
-.about4-lightbox-close {
-  position: absolute;
-  top: -45px;
-  right: 0;
-  background: rgba(242, 242, 230, 0.15);
-  border: none;
-  color: #F2F2E6;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  transition: background 0.2s;
-}
-
-.about4-lightbox-close:hover {
-  background: rgba(242, 242, 230, 0.3);
-}
-/* Uniform Card Sizing */
-.about4-review-card {
-  background: rgba(242, 242, 230, 0.04);
-  border: 1px solid rgba(242, 242, 230, 0.12);
-  border-radius: 20px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Keeps internal spacing balanced */
-  height: 420px; /* Fixed uniform height for all cards */
-  box-sizing: border-box;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.about4-review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-shrink: 0;
-}
-
-/* Comment Box & Truncation Styling */
-.about4-comment-box {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex-grow: 1;
-  overflow: hidden;
-}
-
-.about4-review-comment {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: rgba(242, 242, 230, 0.9);
-  font-style: italic;
-  margin: 0;
-  word-break: break-word;
-}
-
-.about4-see-more-btn {
-  background: none;
-  border: none;
-  color: #a3c1a6; /* Soft sage accent */
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-  padding: 0;
-  text-align: left;
-  width: fit-content;
-  transition: color 0.2s;
-}
-
-.about4-see-more-btn:hover {
-  color: #F2F2E6;
-  text-decoration: underline;
-}
-
-/* Image Wrapper or Placeholder to maintain uniform size */
-.about4-review-img-wrapper {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  height: 150px;
-  flex-shrink: 0;
-  cursor: pointer;
-  border: 1px solid rgba(242, 242, 230, 0.15);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.about4-review-img-placeholder {
-  height: 150px;
-  flex-shrink: 0;
-}
-
-.about4-review-img-wrapper:hover {
-  transform: translateY(-2px);
-  border-color: rgba(242, 242, 230, 0.4);
-}
-
-.about4-review-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%; /* Centers the subject starting from focal point */
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.about4-review-img-wrapper:hover .about4-review-photo {
-  transform: scale(1.03);
-}
-
-.about4-img-overlay-hint {
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 22, 20, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: #F2F2E6;
-  font-size: 0.85rem;
-  font-weight: 600;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.about4-review-img-wrapper:hover .about4-img-overlay-hint {
-  opacity: 1;
-}
-/* Compact Review Card Styles */
-.about4-review-card {
-  background: rgba(242, 242, 230, 0.04);
-  border: 1px solid rgba(242, 242, 230, 0.12);
-  border-radius: 20px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.about4-review-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(242, 242, 230, 0.35);
-  background: rgba(242, 242, 230, 0.07);
-}
-
-.about4-review-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.about4-client-name {
-  font-family: 'Inclusive Sans', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #F2F2E6;
-  margin: 0 0 2px 0;
-}
-
-.about4-review-date {
-  font-size: 0.7rem;
-  color: rgba(242, 242, 230, 0.5);
-}
-
-.about4-card-stars {
-  color: #d4af37;
-  font-size: 0.7rem;
-}
-
-.about4-comment-box {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.about4-review-comment {
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: rgba(242, 242, 230, 0.9);
-  font-style: italic;
-  margin: 0;
-  word-break: break-word;
-}
-
-.about4-read-more-hint {
-  font-size: 0.75rem;
-  color: #a3c1a6;
-  font-weight: 600;
-  margin-top: 2px;
-}
-
-.about4-review-img-wrapper {
-  border-radius: 12px;
-  overflow: hidden;
-  height: 130px;
-  border: 1px solid rgba(242, 242, 230, 0.15);
-}
-
-.about4-review-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%;
-  display: block;
-}
-
-/* Full Review Details Modal Styling */
+/* Detail Modal Specifics */
 .about4-detail-modal-content {
   max-width: 520px;
   max-height: 85vh;
@@ -755,31 +459,101 @@
   display: block;
 }
 
-/* "See More Reviews" Master Button Styling */
-.about4-show-more-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .about4-analytics-card {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+  .about4-container {
+    padding: 4rem 1.5rem;
+  }
+  .about4-modal-content {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* --- Compact & Mobile-Optimized Review Cards --- */
+.about4-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Tighter grid constraint for smaller screens */
+  gap: 1rem;
   width: 100%;
 }
 
-.about4-show-more-reviews-btn {
-  background: rgba(242, 242, 230, 0.08);
-  color: #F2F2E6;
-  border: 1px solid rgba(242, 242, 230, 0.2);
-  padding: 12px 28px;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
+.about4-review-card {
+  background: rgba(242, 242, 230, 0.04);
+  border: 1px solid rgba(242, 242, 230, 0.12);
+  border-radius: 16px;
+  padding: 16px; /* Reduced padding for a smaller footprint */
   display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.about4-show-more-reviews-btn:hover {
-  background: rgba(242, 242, 230, 0.15);
-  border-color: rgba(242, 242, 230, 0.4);
+.about4-review-card:hover {
   transform: translateY(-2px);
+  border-color: rgba(242, 242, 230, 0.35);
+  background: rgba(242, 242, 230, 0.07);
+}
+
+.about4-client-name {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 0.9rem; /* Sized down for mobile */
+  font-weight: 700;
+  color: #F2F2E6;
+  margin: 0 0 2px 0;
+}
+
+.about4-review-date {
+  font-size: 0.65rem;
+  color: rgba(242, 242, 230, 0.5);
+}
+
+.about4-card-stars {
+  color: #d4af37;
+  font-size: 0.65rem;
+}
+
+.about4-review-comment {
+  font-size: 0.82rem; /* Compact body text */
+  line-height: 1.4;
+  color: rgba(242, 242, 230, 0.9);
+  font-style: italic;
+  margin: 0;
+  word-break: break-word;
+}
+
+.about4-read-more-hint {
+  font-size: 0.7rem;
+  color: #a3c1a6;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.about4-review-img-wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100px; /* Smaller image preview height for compact cards */
+  border: 1px solid rgba(242, 242, 230, 0.15);
+  margin-top: 8px;
+}
+
+.about4-review-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  display: block;
+}
+
+/* Mobile Media Query adjustments */
+@media (max-width: 480px) {
+  .about4-reviews-grid {
+    grid-template-columns: 1fr; /* Full-width single column on very small screens, but compact */
+  }
 }
