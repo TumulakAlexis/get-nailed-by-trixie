@@ -73,8 +73,8 @@ export default function Section1() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <HashLink smooth to="/#services">
-                            <button className="btn-services">Services</button>
+                        <HashLink smooth to="/book">
+                            <button className="btn-services">Book Now!</button>
                         </HashLink>
                     </motion.div>
                 </motion.div>
