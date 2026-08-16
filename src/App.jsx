@@ -3,10 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/footer';
 import Landing from './landing';
-import About1 from './about-page/about1';
+import About from './about'; // Import the new wrapper
 import Schedule from './schedule-page/schedule';
 
-// A "Landing" component to group your home sections
 const LandingPage = () => (
   <>
     <Landing />
@@ -24,10 +23,10 @@ function App() {
             {/* The main landing page */}
             <Route path="/" element={<LandingPage />} />
             
-            {/* The separate About page */}
-            <Route path="/about" element={<About1 />} />
+            {/* The multi-section About page */}
+            <Route path="/about" element={<About />} />
             
-            {/* You can add more routes here, like /services or /booking */}
+            {/* Booking page */}
             <Route path="/book" element={<Schedule />} />
           </Routes>
         </main>

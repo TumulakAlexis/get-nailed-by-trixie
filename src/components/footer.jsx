@@ -97,7 +97,7 @@ const Footer = () => {
                                 <FaFacebook />
                             </a>
                             <a href="#" target="_blank"><FaTiktok /></a>
-                            <a href="#" target="_blank"><FaInstagram /></a>
+                            <a href="https://www.instagram.com/getnailedbytrixie?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==&igsi=ZDNlZDc0MzIxNw==" target="_blank"><FaInstagram /></a>
                         </div>
                     </div>
                 </div>

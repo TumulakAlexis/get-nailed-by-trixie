@@ -2,6 +2,15 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
+
+  reviews: defineTable({
+    clientName: v.string(),
+    rating: v.number(), // 1 to 5
+    comment: v.string(),
+    imageStorageId: v.optional(v.id("_storage")), // For client nail photo uploads
+    createdAt: v.number(),
+  }),
+  
   bookings: defineTable({
     name: v.string(),
     facebookName: v.string(),
@@ -47,5 +56,7 @@ services: defineTable({
 adminConfig: defineTable({
     passwordHash: v.string(),
   }),
+
+  
   
 });

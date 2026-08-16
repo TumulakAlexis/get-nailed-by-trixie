@@ -1,0 +1,108 @@
+.about3-container {
+  width: 100%;
+  background-color: #F2F2E6; /* Cream background */
+  color: #2E403D; /* Dark sage green text */
+  padding: 7rem 2rem;
+  box-sizing: border-box;
+}
+
+.about3-content-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about3-subtitle {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #526E69; /* Medium sage accent */
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.about3-content-wrapper h2 {
+  font-family: 'Inknut Antiqua', serif;
+  color: #2E403D;
+  font-size: 2.8rem;
+  margin: 0 0 3rem 0;
+  line-height: 1.2;
+}
+
+/* Vertical Card Layout */
+.about3-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 2.5rem;
+}
+
+.about3-image-frame {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  background: rgba(46, 64, 61, 0.04); /* Soft sage tint frame */
+  border: 1px solid rgba(46, 64, 61, 0.12);
+  border-radius: 24px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 35px rgba(46, 64, 61, 0.06);
+}
+
+.about3-tech-img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.about3-text-content {
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.about3-lead {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: 500;
+  color: #2E403D;
+  margin: 0;
+}
+
+.about3-text-content p {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  color: rgba(46, 64, 61, 0.85);
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about3-container {
+    padding: 4rem 1.5rem;
+  }
+
+  .about3-content-wrapper h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .about3-image-frame {
+    max-width: 240px;
+    padding: 1.5rem;
+  }
+}

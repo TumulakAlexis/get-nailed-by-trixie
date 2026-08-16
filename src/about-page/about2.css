@@ -1,0 +1,120 @@
+.about2-container {
+  width: 100%;
+  background-color: #2E403D; /* Matches Section 1 background */
+  color: #F2F2E6; /* Cream text color */
+  padding: 6rem 2rem;
+  box-sizing: border-box;
+}
+
+.about2-content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+/* Image Side */
+.about2-image-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about2-image-frame {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: rgba(242, 242, 230, 0.05);
+  border: 1px solid rgba(242, 242, 230, 0.15);
+  border-radius: 20px;
+  padding: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.about2-story-img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+}
+
+/* Text Side */
+.about2-text-side {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+}
+
+.about2-subtitle {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #a3c1a6; /* Softer sage accent */
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.about2-text-side h2 {
+  font-family: 'Inknut Antiqua', serif;
+  color: #F2F2E6;
+  font-size: 2.8rem;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+}
+
+.about2-lead {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #F2F2E6;
+  margin-bottom: 1.2rem;
+}
+
+.about2-text-side p {
+  font-family: 'Inclusive Sans', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  color: rgba(242, 242, 230, 0.85);
+  margin: 0;
+}
+
+/* Responsive Layout */
+@media (max-width: 900px) {
+  .about2-content-wrapper {
+    flex-direction: column;
+    gap: 3.5rem;
+    text-align: center;
+  }
+
+  .about2-text-side {
+    align-items: center;
+  }
+
+  .about2-text-side h2 {
+    font-size: 2.3rem;
+  }
+
+  .about2-image-frame {
+    max-width: 320px;
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about2-container {
+    padding: 4rem 1.5rem;
+  }
+  
+  .about2-text-side h2 {
+    font-size: 2rem;
+  }
+}

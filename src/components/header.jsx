@@ -58,13 +58,16 @@ const Header = () => {
                 </Link>
 
                 {/* Link to the Services section (requires hash-link for smooth scrolling across pages) */}
-                <HashLink smooth to="/#services">Services</HashLink>
+                <HashLink smooth to="/#services" onClick={() => setIsMenuOpen(false)}>Services</HashLink>
 
                 {/* Link to your new About page path */}
                 <Link to="/about" onClick={() => {
                     setIsMenuOpen(false)
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}>About</Link>
+
+                {/* Link to the Reviews section/hash */}
+                <HashLink smooth to="/about#reviews" onClick={() => setIsMenuOpen(false)}>Reviews</HashLink>
 
                 {/* Link to your Booking page */}
                 <Link to="/book" onClick={() => {
