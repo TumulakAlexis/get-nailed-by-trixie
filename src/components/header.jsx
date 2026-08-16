@@ -73,7 +73,7 @@ const Header = () => {
                 <Link to="/book" onClick={() => {
                     setIsMenuOpen(false)
                     window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}>Book Now!</Link>
+                }}>Schedule</Link>
             </nav>
         </header>
     );
