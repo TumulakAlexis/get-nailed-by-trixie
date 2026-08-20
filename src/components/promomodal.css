@@ -1,62 +1,60 @@
+/* Overlay backdrop */
 .promo-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.65);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  animation: promoFadeIn 0.3s ease-out;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 1rem;
+  backdrop-filter: blur(3px); /* Optional: adds a nice blur effect */
 }
 
+/* Modal Card Wrapper - Enlarged for desktop, fluid for mobile */
 .promo-card-image-wrapper {
   position: relative;
-  max-width: 90vw;
-  max-height: 85vh;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  animation: promoScaleUp 0.3s ease-out;
   background: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.promo-banner-image {
-  display: block;
+  border-radius: 16px;
+  overflow: hidden;
   width: 100%;
-  max-width: 480px;
-  height: auto;
-  max-height: 80vh;
-  object-fit: contain;
-  cursor: pointer;
+  max-width: 650px; /* Controls desktop width (increase if you want it even bigger) */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  animation: promoScaleUp 0.3s ease-out forwards;
 }
 
+/* Responsive Image styling */
+.promo-banner-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  object-fit: cover;
+  max-height: 75vh; /* Prevents tall banners from overflowing vertically */
+}
+
+/* Close Button */
 .promo-close-btn {
   position: absolute;
   top: 12px;
   right: 12px;
   background: rgba(0, 0, 0, 0.6);
-  color: white;
+  color: #ffffff;
   border: none;
+  border-radius: 50%;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 22px;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .promo-close-btn:hover {
@@ -64,12 +62,34 @@
   transform: scale(1.05);
 }
 
-@keyframes promoFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Simple entrance animation */
+@keyframes promoScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-@keyframes promoScaleUp {
-  from { transform: scale(0.92); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+  .promo-overlay {
+    padding: 0.75rem;
+  }
+  
+  .promo-card-image-wrapper {
+    max-width: 95vw;
+    border-radius: 12px;
+  }
+
+  .promo-close-btn {
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
 }
