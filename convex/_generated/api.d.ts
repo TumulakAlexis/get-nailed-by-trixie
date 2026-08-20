@@ -11,6 +11,7 @@
 import type * as admin from "../admin.js";
 import type * as bookings from "../bookings.js";
 import type * as login from "../login.js";
+import type * as promo from "../promo.js";
 import type * as reviews from "../reviews.js";
 import type * as services from "../services.js";
 
@@ -24,6 +25,7 @@ declare const fullApi: ApiFromModules<{
   admin: typeof admin;
   bookings: typeof bookings;
   login: typeof login;
+  promo: typeof promo;
   reviews: typeof reviews;
   services: typeof services;
 }>;

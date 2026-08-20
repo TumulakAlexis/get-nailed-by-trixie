@@ -2,7 +2,7 @@ import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
 /**
- * 1. Fetch ALL bookings
+ * 1. Fetch ALL bookings (Used by Admin Calendar)
  */
 export const getAllBookings = query({
   args: {},
@@ -12,7 +12,7 @@ export const getAllBookings = query({
 });
 
 /**
- * 2. Fetch Signed Image URL
+ * 2. Fetch Signed Image URL (Used by both to show nail art)
  */
 export const getImageUrl = query({
   args: { storageId: v.union(v.id("_storage"), v.null()) },
@@ -23,8 +23,7 @@ export const getImageUrl = query({
 });
 
 /**
- * 3. Fetch bookings for a specific month
- * UPDATED: Only counts dots for ACTIVE or Occupied slots.
+ * 3. Fetch bookings for a specific month (Used for Calendar Dots)
  */
 export const getMonthAvailability = query({
   args: { month: v.string() }, 
@@ -38,8 +37,8 @@ export const getMonthAvailability = query({
 
     const stats = {};
     for (const booking of bookings) {
-      // If it's completed or canceled, don't show a red dot on the calendar
-      if (booking.status === "active" || booking.name === "Occupied") {
+      // Only count active/completed as dots
+      if (booking.status !== "canceled") {
         stats[booking.date] = (stats[booking.date] || 0) + 1;
       }
     }
@@ -48,8 +47,7 @@ export const getMonthAvailability = query({
 });
 
 /**
- * 4. Check specific time slots for a single day
- * UPDATED: Completed slots are now marked as "Available" again.
+ * 4. Check specific time slots (Prevents double booking)
  */
 export const getAvailableSlots = query({
   args: { date: v.string() },
@@ -59,9 +57,8 @@ export const getAvailableSlots = query({
       .withIndex("by_date", (q) => q.eq("date", args.date))
       .collect();
 
-    // A slot is ONLY "taken" if it is active or manually blocked
     const takenSlots = dayBookings
-      .filter(b => b.status === "active" || b.name === "Occupied")
+      .filter(b => b.status === "active" || b.status === "completed" || !b.status)
       .map((b) => b.slot);
       
     const allSlots = ["9:00 AM", "1:00 PM", "4:00 PM"];
@@ -84,7 +81,14 @@ export const createBooking = mutation({
     email: v.string(),
     date: v.string(),
     slot: v.string(),
-    imageStorageId: v.union(v.id("_storage"), v.null()), 
+    imageStorageId: v.union(v.id("_storage"), v.null()),
+    services: v.array(
+      v.object({
+        name: v.string(),
+        price: v.number(),
+      })
+    ),
+    totalFee: v.number(),
   },
   handler: async (ctx, args) => {
     const existing = await ctx.db
@@ -92,8 +96,7 @@ export const createBooking = mutation({
       .withIndex("by_date", (q) => q.eq("date", args.date).eq("slot", args.slot))
       .unique();
 
-    // Only block the user if an ACTIVE booking already exists
-    if (existing && (existing.status === "active" || existing.name === "Occupied")) {
+    if (existing && (existing.status === "active" || existing.status === "completed")) {
       throw new Error("This slot was just booked by someone else!");
     }
 

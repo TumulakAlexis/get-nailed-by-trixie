@@ -1,4 +1,4 @@
-// convex/reviews.ts
+// convex/review.js
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
@@ -18,7 +18,7 @@ export const getReviewsWithAnalytics = query({
     }
 
     let totalScore = 0;
-    const distribution: Record<number, number> = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+    const distribution = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
 
     const reviewsWithImages = await Promise.all(
       reviews.map(async (review) => {

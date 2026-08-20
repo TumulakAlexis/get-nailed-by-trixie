@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/footer';
 import Landing from './landing';
-import About from './about'; // Import the new wrapper
+import About from './about';
 import Schedule from './schedule-page/schedule';
+import PromoModal from './components/PromoModal'; // 1. Import your promo modal (adjust path if needed)
 
 const LandingPage = () => (
   <>
@@ -16,6 +17,9 @@ function App() {
   return (
     <Router>
       <div className="App">
+        {/* 2. Place it here globally so it fires on site load */}
+        <PromoModal />
+
         <Header />
         
         <main>

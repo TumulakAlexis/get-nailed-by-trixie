@@ -11,11 +11,18 @@ export default defineSchema({
     slot: v.string(), // "9:00 AM"
     status: v.optional(v.string()),
     imageStorageId: v.union(v.id("_storage"), v.null()),
+    services: v.array(
+      v.object({
+        name: v.string(),
+        price: v.number(),
+      })
+    ),
+    totalFee: v.number(),
     createdAt: v.number(),
   }).index("by_date", ["date", "slot"]),
 
   transactions: defineTable({
-    bookingId: v.id("bookings"), // <--- The link to the booking
+    bookingId: v.id("bookings"),
     name: v.string(),
     phone: v.string(),
     services: v.array(v.object({ 
@@ -23,6 +30,13 @@ export default defineSchema({
       price: v.number() 
     })),
     additionalFee: v.number(),
+    discount: v.optional(
+      v.object({
+        type: v.string(),
+        value: v.number(),
+        amount: v.number(),
+      })
+    ),
     totalFee: v.number(),
     date: v.optional(v.string()), 
     createdAt: v.number(),
@@ -40,7 +54,7 @@ export default defineSchema({
     name: v.string(),
     description: v.string(),
     price: v.number(),
-    imageStorageId: v.optional(v.id("_storage")), // For the service photo
+    imageStorageId: v.optional(v.id("_storage")),
   }),
 
   adminConfig: defineTable({
@@ -48,5 +62,8 @@ export default defineSchema({
     email: v.optional(v.string()),
     otp: v.optional(v.string()),
     otpExpires: v.optional(v.number()),
+    // Added fields for Promo Banner Management:
+    promoActive: v.optional(v.boolean()),
+    promoImageStorageId: v.optional(v.id("_storage")),
   }),
 });

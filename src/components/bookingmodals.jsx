@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useQuery, useMutation } from "convex/react"; 
 import { api } from "../../convex/_generated/api";
 import { format } from 'date-fns';
@@ -14,6 +14,11 @@ const BookingModal = ({ selectedDate, onClose }) => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [isUploading, setIsUploading] = useState(false);
+    
+    // Service selection state
+    const servicesData = useQuery(api.services.getServices) || [];
+    const [selectedServices, setSelectedServices] = useState([]);
+
     const [formData, setFormData] = useState({
         name: '', facebook: '', phone: '', email: ''
     });
@@ -32,6 +37,18 @@ const BookingModal = ({ selectedDate, onClose }) => {
             emailjs.init(EMAILJS_PUBLIC_KEY);
         }
     }, [EMAILJS_PUBLIC_KEY]);
+
+    const toggleService = (service) => {
+        setSelectedServices(prev =>
+            prev.find(s => s._id === service._id)
+                ? prev.filter(s => s._id !== service._id)
+                : [...prev, service]
+        );
+    };
+
+    const totalServicePrice = useMemo(() => {
+        return selectedServices.reduce((sum, s) => sum + s.price, 0);
+    }, [selectedServices]);
 
     const handleBooking = async (e) => {
         e.preventDefault();
@@ -59,7 +76,12 @@ const BookingModal = ({ selectedDate, onClose }) => {
                 phone: formData.phone,
                 date: dateKey,
                 slot: selectedSlot,
-                imageStorageId: storageId, // Will be null if no image selected
+                imageStorageId: storageId,
+                services: selectedServices.map(s => ({
+                    name: s.name,
+                    price: s.price
+                })),
+                totalFee: totalServicePrice,
             });
 
             const templateParams = {
@@ -69,6 +91,8 @@ const BookingModal = ({ selectedDate, onClose }) => {
                 user_facebook: formData.facebook,
                 booking_date: format(selectedDate, 'MMMM d, yyyy'),
                 booking_slot: selectedSlot,
+                booking_services: selectedServices.map(s => s.name).join(', '),
+                total_fee: `₱${totalServicePrice.toLocaleString()}`,
                 to_email: formData.email,
             };
 
@@ -107,9 +131,13 @@ const BookingModal = ({ selectedDate, onClose }) => {
                     </div>
                 ) : (
                     <>
-                        <h2 className="modal-title-date">{format(selectedDate, 'MMMM d')}</h2>
+                        <div className="modal-header-info">
+                            <h2 className="modal-title-date">{format(selectedDate, 'MMMM d')}</h2>
+                            <span className="step-indicator">Step {step} of 3</span>
+                        </div>
 
-                        {step === 1 ? (
+                        {/* STEP 1: TIME SLOTS */}
+                        {step === 1 && (
                             <div className="modal-step-content">
                                 <div className="slot-container">
                                     {slots.map((slot) => (
@@ -129,36 +157,92 @@ const BookingModal = ({ selectedDate, onClose }) => {
                                     Next
                                 </button>
                             </div>
-                        ) : (
+                        )}
+
+                        {/* STEP 2: SERVICE SELECTION */}
+                        {step === 2 && (
+                            <div className="modal-step-content">
+                                <div className="services-grid" style={{ maxHeight: '220px', overflowY: 'auto', marginBottom: '20px', display: 'flex', flexDirection: 'column', gap: '10px', textAlign: 'left' }}>
+                                    {servicesData.length > 0 ? (
+                                        servicesData.map(s => {
+                                            const isSelected = selectedServices.find(sel => sel._id === s._id);
+                                            return (
+                                                <div
+                                                    key={s._id}
+                                                    className={`slot-row ${isSelected ? 'selected' : ''}`}
+                                                    onClick={() => toggleService(s)}
+                                                    style={{ 
+                                                        justifyContent: 'space-between', 
+                                                        padding: '10px 15px', 
+                                                        borderRadius: '12px', 
+                                                        border: isSelected ? '1.5px solid #2E403D' : '1px solid #eee',
+                                                        background: isSelected ? '#f0f4ef' : '#fafafa',
+                                                        fontSize: '1.1rem'
+                                                    }}
+                                                >
+                                                    <div className="service-item-info" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                                        {s.imageUrl && <img src={s.imageUrl} alt="" className="mini-thumb" style={{ width: '24px', height: '24px', borderRadius: '6px', objectFit: 'cover' }} />}
+                                                        <span style={{ color: '#333' }}>{s.name}</span>
+                                                    </div>
+                                                    <span style={{ color: '#798C71', fontWeight: 600 }}>₱{s.price.toLocaleString()}</span>
+                                                </div>
+                                            );
+                                        })
+                                    ) : (
+                                        <p style={{ textAlign: 'center', color: '#888' }}>No services found in menu.</p>
+                                    )}
+                                </div>
+
+                                <div className="payment-summary" style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', padding: '0 10px', fontWeight: 600, color: '#2E403D' }}>
+                                    <span>Total:</span>
+                                    <span style={{ color: '#798C71' }}>₱{totalServicePrice.toLocaleString()}</span>
+                                </div>
+
+                                <div className="modal-form-actions" style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+                                    <button type="button" className="back-link" onClick={() => setStep(1)}>Back</button>
+                                    <button className="modal-main-btn" disabled={selectedServices.length === 0} onClick={() => setStep(3)} style={{ margin: 0, width: 'auto', padding: '16px 40px' }}>
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* STEP 3: CLIENT DETAILS */}
+                        {step === 3 && (
                             <form className="modal-form" onSubmit={handleBooking}>
                                 <div className="input-field">
                                     <input type="text" placeholder="Full Name" required 
+                                        value={formData.name}
                                         onChange={e => setFormData({ ...formData, name: e.target.value })} />
                                 </div>
                                 <div className="input-field">
                                     <input type="text" placeholder="Facebook Name" required 
+                                        value={formData.facebook}
                                         onChange={e => setFormData({ ...formData, facebook: e.target.value })} />
                                 </div>
                                 <div className="input-field">
                                     <input type="email" placeholder="Email Address" required 
+                                        value={formData.email}
                                         onChange={e => setFormData({ ...formData, email: e.target.value })} />
                                 </div>
                                 <div className="input-field">
                                     <input type="tel" placeholder="Phone Number" required 
+                                        value={formData.phone}
                                         onChange={e => setFormData({ ...formData, phone: e.target.value })} />
                                 </div>
-                                <div className="image-upload-wrapper">
-                                    <div className={`upload-box ${selectedImage ? 'has-file' : ''}`} onClick={() => imageInput.current.click()}>
+                                <div className="image-upload-wrapper" onClick={() => imageInput.current.click()}>
+                                    <div className={`upload-box ${selectedImage ? 'has-file' : ''}`}>
                                         <span className="upload-icon">{selectedImage ? '✅' : '📷'}</span>
-                                        <p>{selectedImage ? selectedImage.name : "Add Reference (Optional)"}</p>
+                                        <p style={{ margin: 0 }}>{selectedImage ? selectedImage.name : "Add Reference (Optional)"}</p>
                                     </div>
-                                    <input type="file" ref={imageInput} hidden accept="image/*" 
+                                    <input type="file" ref={imageInput} className="hidden-input" accept="image/*" 
                                         onChange={(e) => setSelectedImage(e.target.files[0])} />
                                 </div>
-                                <div className="modal-form-actions single-action">
+                                <div className="modal-form-actions single-action" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
                                     <button type="submit" className="modal-main-btn" disabled={isUploading}>
                                         {isUploading ? "Processing..." : "Confirm Booking"}
                                     </button>
+                                    <button type="button" className="back-link" onClick={() => setStep(2)}>Back</button>
                                 </div>
                             </form>
                         )}
