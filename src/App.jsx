@@ -5,7 +5,7 @@ import Footer from './components/footer';
 import Landing from './landing';
 import About from './about';
 import Schedule from './schedule-page/schedule';
-import PromoModal from './components/PromoModal'; // 1. Import your promo modal (adjust path if needed)
+import PromoModal from './components/promomodal'; // 1. Import your promo modal (adjust path if needed)
 
 const LandingPage = () => (
   <>
