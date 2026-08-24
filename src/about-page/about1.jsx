@@ -46,11 +46,7 @@ const About1 = () => {
           variants={textFadeUp}
         >
           <p>
-            Get Nailed by Trixie is a luxury nail studio dedicated to 
-            delivering expertly crafted nail art and premium nail 
-            care. We specialize in elegant, modern, and customized 
-            designs, combining high-quality products with 
-            meticulous attention to detail.
+            Get Nailed by Trixie is a home-based nail studio in Polomolok that offers quality manicure services. We specialize in stylish, elegant, and customized nail designs made to suit every client’s personality and preference. With attention to detail and quality products, we aim to provide a relaxing and comfortable nail experience from the comfort of our home studio
           </p>
         </motion.div>
       </div>

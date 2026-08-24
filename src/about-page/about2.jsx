@@ -11,7 +11,7 @@ const About2 = () => {
   // Define milestones for 2023, 2024, and 2025
   const milestones = [
     {
-      year: "2023",
+      year: "2022",
       title: "The Passion Project",
       img: Pic2023,
       desc: "Where Get Nailed by Trixie first began as a dedicated creative outlet and independent home studio space."
@@ -102,12 +102,14 @@ const About2 = () => {
           variants={textFadeUp}
         >
           <span className="about2-subtitle">How It All Started</span>
-          <h2>Our Story (2023 – 2025)</h2>
+          <h2>Our Story (2022 – 2025)</h2>
           <p className="about2-lead">
-            Get Nailed by Trixie was born out of a genuine passion for self-expression, artistry, and the therapeutic experience of premium nail care.
+            Since November 2022, what started as a simple setup has slowly grown through nail sessions, repeat clients, and fully-booked month. With the continuous support of our clients, we have been able to invest in better-quality tools, products, and equipment to provide improved and more professional nail services.
           </p>
           <p>
-            What started in 2023 as a creative outlet steadily evolved into a dedicated luxury studio. Through every milestone—from our first independent space to our modern setup—we’ve remained committed to matching meticulous craftsmanship with modern elegance. Every set we design reflects our deep love for detail, turning routine appointments into a true ritual of self-care.
+            Every milestone, big or small, has been part of our journey. From learning and improving our skills to creating new and beautiful nail designs, Get Nailed by Trixie continues to grow while staying true to its goal of giving every client a quality and enjoyable nail experience.
+            
+            We are grateful to everyone who has supported us since day one. Your trust and support inspire us to keep learning, creating, and growing. 
           </p>
         </motion.div>
 
