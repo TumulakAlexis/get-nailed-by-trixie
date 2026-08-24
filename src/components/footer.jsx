@@ -75,12 +75,12 @@ const Footer = () => {
                     <div className="footer-column contact-info">
                         <div className="contact-row">
                             <span className="contact-icon"><FaPhoneAlt /></span>
-                            <span className="contact-text">+ 63 908 789 3392</span>
+                            <span className="contact-text">0995 217 4416 / 0963 299 4817</span>
                         </div>
                         <div className="contact-row">
                             <span className="contact-icon"><FaMapMarkerAlt /></span>
                             <span className="contact-text">
-                                SK University, Barangay Magsaysay, Polomolok, South Cotabato
+                                SK (Prk. Bagtindon), Block 4, Brgy.Magsaysay, Polomolok, South Cotabato
                             </span>
                         </div>
                     </div>
