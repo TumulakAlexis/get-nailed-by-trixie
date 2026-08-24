@@ -28,10 +28,13 @@ const About3 = () => {
           
           <div className="about3-text-content">
             <p className="about3-lead">
-              Hi, I’m Trixie! Creator and lead nail artist behind Get Nailed by Trixie.
+              Hi, I’m Trixie! The owner and self-taught nail artist behind Get Nailed by Trixie.
             </p>
             <p>
-              My journey in nail artistry started from a deep appreciation for refined aesthetics and intricate design. Every client who sits at my desk receives personalized attention, careful nail health maintenance, and custom art tailored to their unique style. I take pride in making every session feel like a relaxing, luxurious escape where you leave feeling confident and beautiful.
+              I started my nail business when I was in my 2nd year of college. What began as a simple hobby and something I enjoyed doing in my free time slowly grew into a true passion. Over time, I continued learning, practicing, and improving my skills to create beautiful, unique sets.
+            </p>
+            <p>
+              For me, every session is more than just doing nails—it’s a chance to express creativity, showcase my skills, and put a little piece of my heart into every set. I love creating designs that make you feel confident, beautiful, and happy with your nails. Thank you for supporting my small business!
             </p>
           </div>
         </div>
