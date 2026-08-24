@@ -185,7 +185,6 @@ const Schedule = () => {
             <div className="pro-tips">
               <p><strong>Tips:</strong></p>
               <ul>
-                <li>Appointments are on a <strong>first-come, first-served</strong> basis.</li>
                 <li>Please arrive <strong>5-10 minutes</strong> early.</li>
                 <li>Need to reschedule? Contact us at <strong>0995 217 4416 or 0963 299 4817</strong></li>
               </ul>
