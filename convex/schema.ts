@@ -11,13 +11,16 @@ export default defineSchema({
     slot: v.string(), // "9:00 AM"
     status: v.optional(v.string()),
     imageStorageId: v.union(v.id("_storage"), v.null()),
-    services: v.array(
-      v.object({
-        name: v.string(),
-        price: v.number(),
-      })
+    // Made optional to support manual slot occupations:
+    services: v.optional(
+      v.array(
+        v.object({
+          name: v.string(),
+          price: v.number(),
+        })
+      )
     ),
-    totalFee: v.number(),
+    totalFee: v.optional(v.number()),
     createdAt: v.number(),
   }).index("by_date", ["date", "slot"]),
 
@@ -25,10 +28,12 @@ export default defineSchema({
     bookingId: v.id("bookings"),
     name: v.string(),
     phone: v.string(),
-    services: v.array(v.object({ 
-      name: v.string(), 
-      price: v.number() 
-    })),
+    services: v.array(
+      v.object({ 
+        name: v.string(), 
+        price: v.number() 
+      })
+    ),
     additionalFee: v.number(),
     discount: v.optional(
       v.object({
@@ -62,7 +67,6 @@ export default defineSchema({
     email: v.optional(v.string()),
     otp: v.optional(v.string()),
     otpExpires: v.optional(v.number()),
-    // Added fields for Promo Banner Management:
     promoActive: v.optional(v.boolean()),
     promoImageStorageId: v.optional(v.id("_storage")),
   }),
